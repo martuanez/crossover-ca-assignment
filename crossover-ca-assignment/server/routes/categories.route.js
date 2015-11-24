@@ -11,7 +11,7 @@ router.route('/categories')
             });
     })
     .post(function (req, res) {
-        var categoryName = req.body.categoryName;
+        var categoryName = req.body.name;
 
         categoriesModel.postCategory(categoryName)
             .then(function (response) {
@@ -58,3 +58,5 @@ function onError(res, error) {
     res.status(500);
     res.json({error: error});
 }
+
+module.exports = router;

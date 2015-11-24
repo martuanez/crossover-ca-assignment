@@ -1,5 +1,5 @@
 var Parse = require('../lib/parse/parse');
-var categoriesModel = require('categories.model');
+var categoriesModel = require('../models/categories.model');
 
 function getThreads(categoryId, skip) {
     var Thread = Parse.Object.extend('Threads');

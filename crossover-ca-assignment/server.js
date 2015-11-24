@@ -4,12 +4,29 @@ var bodyParser = require('body-parser');
 var http = require('http').Server(app);
 var router = express.Router();              // get an instance of the express Router
 
+
+var categoriesRoute = require('./server/routes/categories.route');
+var postsRoute = require('./server/routes/posts.route');
+var threadsRoute = require('./server/routes/threads.route');
+var usersRoute = require('./server/routes/users.route');
+
+
+
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;        // set our port
+
+app.get(/^(.*)$/, function (req, res, next) {
+    if (req.path.indexOf('.') !== -1 || req.path.indexOf('api') !== -1) {
+        next();
+    } else {
+        res.render('index', { url: req.path.split('/')[1] });
+    }
+});
+
 
 var server = app.listen(port);
 var io = require('socket.io').listen(server);
@@ -27,27 +44,6 @@ io.on('connection', function (socket) {
 router.get('/', function (req, res) {
     res.json({message: 'hooray! welcome to our api!'});
 });
-
-
-router.route('/uploaded')
-    .get(res('get', 'uploaded'))
-    .post(res('post', 'uploaded'));
-
-router.route('/indexed')
-    .get(res('get', 'indexed'))
-    .post(res('post', 'indexed'));
-
-router.route('/machine-ready')
-    .get(res('get', 'machine-ready'))
-    .post(res('post', 'machine-ready'));
-
-router.route('/human-ready')
-    .get(res('get', 'human-ready'))
-    .post(res('post', 'human-ready'));
-
-router.route('/error')
-    .get(res('get', 'error'))
-    .post(res('post', 'error'));
 
 function res(method, name) {
     if(method === 'get'){
@@ -68,20 +64,13 @@ function res(method, name) {
         return name + '[' + method + ']: ' + JSON.stringify(data);
     }
 }
-/*
- uploadedCallBack: getUrl('api/uploaded'),
- indexedCallBack: getUrl('api/indexed'),
- machineReadyCallBack: getUrl('api/machine-ready'),
- humanReadyCallBack: getUrl('api/human-ready'),
- errorCallBack: getUrl('api/error')
- */
-
-// more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
-app.use('/api', router);
-
+//Rest api
+app.use('/api', categoriesRoute);
+app.use('/api', postsRoute);
+app.use('/api', threadsRoute);
+app.use('/api', usersRoute);
 
 //Frontend assets
 app.use(express.static(__dirname + '/client'));
@@ -98,3 +87,4 @@ app.get('/', function (request, response) {
 // START THE SERVER
 // =============================================================================
 console.log('Magic happens on port ' + port);
+

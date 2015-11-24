@@ -1,0 +1,122 @@
+.italics {
+  font-style: italic;
+}
+
+.flex-row {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-valign-center {
+  align-items: center;
+}
+
+.flex-item {
+  flex: 1 1 auto;
+  &.small {
+    flex: 0 1 auto;
+  }
+}
+
+.flex-xs-4 .flex-item {
+  flex-basis: 33.333%;
+  max-width: 33.333%
+}
+
+.flex-xs-6 .flex-item {
+  flex-basis: 100%;
+  max-width: 100%
+}
+
+.flex-xs-6 .flex-item {
+  flex-basis: 50%;
+  max-width: 50%
+}
+
+@media only screen and (min-width: 992px) {
+  .flex-md-2 .flex-item {
+    flex-basis: 16.667%;
+    max-width: 16.667%;
+  }
+
+  .flex-md-4 .flex-item {
+    flex-basis: 33.333%;
+    max-width: 33.333%
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .col-xxs-12 {
+    width: 100%;
+  }
+}
+
+.ng-invalid.ng-touched {
+  background-color: rgba(250, 120, 120, 0.17);
+  border: 1px solid #E28585;
+}
+
+input.ng-valid.ng-touched {
+  /*background-color: #78FA89;*/
+}
+
+.column-xs-2 {
+  column-count: 2;
+}
+
+@media (min-width: 992px) {
+  .column-3 {
+    column-count: 3;
+  }
+  .column-sm-4 {
+    column-count: 4;
+  }
+}
+
+.column-break {
+  -webkit-column-break-inside: avoid;
+  break-inside: avoid-column;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.primary-text {
+  color: $cyan;
+}
+
+.white-text {
+  color: $white;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.vertical-center {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.read-mode[disabled] {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  cursor: default;
+}
+
+select.read-mode[disabled] {
+  appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+
+.error {
+  color: #EF0000;
+}
+

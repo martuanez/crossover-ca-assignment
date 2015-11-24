@@ -1,0 +1,45 @@
+.login-form {
+  height: 21rem;
+  width: 35rem;
+  position: absolute;
+  bottom: -22rem;
+  right: -15.4rem;
+  z-index: 9999;
+  border-radius: .5rem;
+  padding: 3rem;
+  background: $header-bg;
+  .loader {
+    position: absolute;
+    bottom: 3.8rem;
+    right: 4rem;
+  }
+}
+
+.forgot-password {
+  margin-top: -1rem;
+  cursor: pointer;
+}
+
+.student-login {
+  h3 {
+    margin-top: 1rem;
+    color: $cyan;
+    font-size: 2rem;
+  }
+  p {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .login-form {
+    right: -14rem;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .login-form {
+    bottom: -17rem;
+    right: -3.4rem;
+  }
+}

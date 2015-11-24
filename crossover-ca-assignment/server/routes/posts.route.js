@@ -72,3 +72,5 @@ function onError(res, error) {
     res.status(500);
     res.json({error: error});
 }
+
+module.exports = router;

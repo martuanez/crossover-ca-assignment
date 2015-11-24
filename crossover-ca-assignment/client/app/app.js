@@ -2,9 +2,10 @@ angular.module('mBoard', [
     'ui.router',
     'ui.bootstrap',
     'toastr',
-
+    'mBoard.latest',
+    'mBoard.categories'
 ])
-    .run(function ($rootScope, $state, $stateParams, AuthService) {
+    .run(function ($rootScope, $state, $stateParams/*, AuthService*/) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
 
@@ -53,8 +54,8 @@ angular.module('mBoard', [
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, toastrConfig) {
         'use strict';
         $httpProvider.interceptors.push('errorsInterceptor');
-        $urlRouterProvider.when('', '/');
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.when('', '/latest');
+        $urlRouterProvider.otherwise('/latest');
         angular.extend(toastrConfig, {
             allowHtml: true,
             positionClass: 'toast-bottom-right'
@@ -75,10 +76,10 @@ angular.module('mBoard', [
 
         function request(config) {
             var token;
-            $injector.invoke(function (AuthService) {
+           /* $injector.invoke(function (AuthService) {
                 token = AuthService.getToken();
             });
-
+*/
             if (token) {
                 config.headers = config.headers || {};
                 config.headers.Authorization = 'Bearer ' + token;

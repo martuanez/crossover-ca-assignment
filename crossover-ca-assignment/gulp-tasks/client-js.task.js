@@ -10,7 +10,7 @@ module.exports = function (gulp, plugins, jsFiles) {
                 'client/app/app.js',
                 'client/app/core/**/**/*.js'
             ], {base: '.'}))
-            .pipe(plugins.concat('tutors.js'))
+            .pipe(plugins.concat('client.js'))
             .pipe(plugins.sourcemaps.write())
             //.pipe(plugins.hash())
             .pipe(gulp.dest('./client/dist/js/'))

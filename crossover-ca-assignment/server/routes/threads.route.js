@@ -1,9 +1,10 @@
 var router = require('express').Router();
 var threadsModel = require('../models/threads.model');
+var categoriesModel = require('../models/categories.model');
 
 router.route('/threads')
     .get(function (req, res) {
-        var categoryId = req.query.category;
+        var categoryId = req.query.categoryId;
         var skip = req.query.skip;
 
         threadsModel.getThreads(categoryId, skip)
@@ -17,7 +18,13 @@ router.route('/threads')
         var newThread = req.body;
         var token = getToken(req);
 
-        threadsModel.postThread(newThread.title, newThread.body, newThread.user, newThread.category)
+        categoriesModel.getCategory(newThread.categoryId)
+            .then(function (category) {
+                if(!category){
+                    onError(res, 'Invalid category');
+                }
+                return threadsModel.postThread(newThread.title, newThread.body, newThread.user, category)
+            })
             .then(function (response) {
                 res.json({data: response});
             }, function (error) {
@@ -76,3 +83,5 @@ function onError(res, error) {
     res.status(500);
     res.json({error: error});
 }
+
+module.exports = router;
