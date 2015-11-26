@@ -10,6 +10,6 @@ function signup(username, password, email) {
 }
 
 
-module.export = {
+module.exports = {
     signup: signup
 };

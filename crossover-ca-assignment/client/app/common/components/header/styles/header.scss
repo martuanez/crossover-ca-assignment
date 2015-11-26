@@ -1,5 +1,5 @@
 .header {
-  padding: 1.5rem 0 0.6rem;
+  padding: 1.5rem 2.5rem 0.6rem;
   background: $header-bg;
   min-height: 8rem;
   color: $white;
@@ -46,6 +46,17 @@
     margin-left: 0 !important;
   }
 
+
+  .action-item__btn {
+    display: inline-block;
+    width: 13.5rem;
+    text-align: center;
+    border: 1px solid $white;
+    border-radius: 0.3rem;
+    padding: 1.1rem 2.2rem;
+    transform: translateY(0);
+  }
+
   .show-sm {
     display: inline-block;
   }
@@ -76,6 +87,11 @@
   @media only screen and (max-width: 480px) {
     .header {
       padding: 0.5rem 0 1.6rem;
+    }
+
+    .action-item__btn {
+      width: 11.5rem;
+      padding: 1.1rem 0;
     }
   }
 
@@ -119,7 +135,10 @@
 
   @media only screen and (min-width: 993px) {
     .action-item {
-      margin-left: 5rem;
+      margin-left: 4rem;
+    }
+    .action-item__btn {
+      margin-left: 3rem;
     }
 
     .branding {

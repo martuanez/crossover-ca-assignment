@@ -1,0 +1,15 @@
+<div class="btn-group" uib-dropdown is-open="status.isopen">
+    <button id="single-button"
+            type="button"
+            class="btn btn-default"
+            uib-dropdown-toggle
+            ng-disabled="disabled">
+        <span class="categories-dropdown--text">{{selectedCategory.name || defaultCategory.name }}</span>
+        <span class="caret"></span>
+    </button>
+    <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+        <li role="menuitem" ng-repeat="category in categories" ng-click="setCurrentCategory(category)">
+            <a href="#">{{category.name}}</a>
+        </li>
+    </ul>
+</div>

@@ -45,7 +45,7 @@ function deleteCategory(id) {
     return categoriesObj.destroy();
 }
 
-module.export = {
+module.exports = {
     getCategories: getCategories,
     postCategory: postCategory,
     getCategory: getCategory,

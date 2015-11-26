@@ -1,0 +1,34 @@
+<section class="latest section container">
+    <div class="row">
+        <div class="col-xs-6">
+            <categories-dropdown on-category-select="setCurrentCategory(category)"></categories-dropdown>
+        </div>
+        <div class="col-xs-6">
+            <button type=button" class="btn btn-primary" ng-click="onAddTopicClick()">
+                <span class="glyphicon glyphicon-plus"></span> New Topic
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="topics">
+                <tr>
+                    <th class="topics--title">Topic</th>
+                    <th class="topics--title">Users</th>
+                    <th class="topics--title">Category</th>
+                    <th class="topics--title">Views</th>
+                    <th class="topics--title">Reply</th>
+                    <th class="topics--title">Activity</th>
+                </tr>
+                <tr ng-repeat="topic in topics">
+                    <td class="topics--content topics--content--topic" colspan="1">{{topic.post.title}}</td>
+                    <td class="topics--content topics--content--users">{{topic.creator.username}} {{topic.lastCommentUser.username}}</td>
+                    <td class="topics--content topics--content--category">{{topic.category.name}}</td>
+                    <td class="topics--content topics--content--views">{{topic.views}}</td>
+                    <td class="topics--content topics--content--replies">{{topic.replies}}</td>
+                    <td class="topics--content topics--content--activity">{{topic.updatedAt}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>

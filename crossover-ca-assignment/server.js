@@ -7,7 +7,7 @@ var router = express.Router();              // get an instance of the express Ro
 
 var categoriesRoute = require('./server/routes/categories.route');
 var postsRoute = require('./server/routes/posts.route');
-var threadsRoute = require('./server/routes/threads.route');
+var topicsRoute = require('./server/routes/topics.route');
 var usersRoute = require('./server/routes/users.route');
 
 
@@ -69,7 +69,7 @@ function res(method, name) {
 //Rest api
 app.use('/api', categoriesRoute);
 app.use('/api', postsRoute);
-app.use('/api', threadsRoute);
+app.use('/api', topicsRoute);
 app.use('/api', usersRoute);
 
 //Frontend assets

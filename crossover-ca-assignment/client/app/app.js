@@ -2,7 +2,7 @@ angular.module('mBoard', [
     'ui.router',
     'ui.bootstrap',
     'toastr',
-    'mBoard.latest',
+    'mBoard.topics',
     'mBoard.categories'
 ])
     .run(function ($rootScope, $state, $stateParams/*, AuthService*/) {
@@ -54,8 +54,8 @@ angular.module('mBoard', [
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, toastrConfig) {
         'use strict';
         $httpProvider.interceptors.push('errorsInterceptor');
-        $urlRouterProvider.when('', '/latest');
-        $urlRouterProvider.otherwise('/latest');
+        $urlRouterProvider.when('', '/topics');
+        $urlRouterProvider.otherwise('/topics');
         angular.extend(toastrConfig, {
             allowHtml: true,
             positionClass: 'toast-bottom-right'

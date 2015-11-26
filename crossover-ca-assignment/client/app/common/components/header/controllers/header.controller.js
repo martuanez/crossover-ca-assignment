@@ -1,37 +1,46 @@
 angular.module('mBoard')
-    .controller('HeaderCtrl', function ($scope, $modal, AuthenticationSvc) {
+    .controller('HeaderCtrl', function ($scope, $uibModal, AuthenticationSvc) {
         $scope.showChilds = false;
+        $scope.isLoggedIn = AuthenticationSvc.isAuthenticated();
         //Scope methods
         $scope.onLoginClick = onLoginClick;
         $scope.onLogoutClick = onLogoutClick;
         $scope.onSignupClick = onSignupClick;
-        //$scope.loggedIn = AuthenticationSvc.isAuthorized();
+        $scope.onUserLogin = updateLoggedInStatus;
 
-        function onLoginClick(){
-            $scope.showLogin = !$scope.showLogin;
+        function updateLoggedInStatus() {
+            $scope.isLoggedIn = AuthenticationSvc.isAuthenticated();
+            $scope.showLogin = false;
         }
 
-        function onLogoutClick(){
-            AuthSvc.deAuthorize();
-          //  $scope.loggedIn = AuthSvc.isAuthorized();
+        function onLoginClick() {
+            openSignupLoginModal(true);
         }
 
-        function onSignupClick(){
-            var modalInstance = $modal.open({
+        function onLogoutClick() {
+            AuthenticationSvc.logout();
+            updateLoggedInStatus();
+        }
+
+        function onSignupClick() {
+            openSignupLoginModal();
+        }
+
+        function openSignupLoginModal(isLogin) {
+            var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/common/components/signup-modal/templates/signup-modal.tpl.html',
-                controller: 'SignupModalCtrl',
-                size: 'lg',
+                templateUrl: 'app/common/components/login-signup-modal/templates/login-signup-modal.tpl.html',
+                controller: 'LoginSignupModalCtrl',
+                size: 'md',
                 resolve: {
-                    survey: getValue($scope.survey),
-                    question: getValue(question)
+                    showLogin: function showLogin() {
+                        return isLogin;
+                    }
                 }
             });
 
-            modalInstance.result.then(function (editedQuestion) {
-                SurveysService.updateSurvey($scope.survey);
-            }, function () {
-                //Do something on cancel if applies
+            modalInstance.result.then(function () {
+                updateLoggedInStatus();
             });
         }
     });

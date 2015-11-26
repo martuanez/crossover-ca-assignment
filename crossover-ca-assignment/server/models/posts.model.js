@@ -56,7 +56,7 @@ function deletePost(id) {
     return post.destroy();
 }
 
-module.export = {
+module.exports = {
     getPosts: getPosts,
     postPost: postPost,
     getPost: getPost,
