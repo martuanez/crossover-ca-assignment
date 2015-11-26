@@ -1,0 +1,12 @@
+.topics {
+  width: 100%;
+  .topics--content--activity, .topics--content--category {
+    width: 6rem;
+  }
+  .topics--content--replies, .topics--content--views {
+    width: 6.5rem;
+  }
+  .topics--content--replies {
+    font-weight: bolder;
+  }
+}

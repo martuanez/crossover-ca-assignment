@@ -4,7 +4,8 @@ angular.module('mBoard')
             restrict: 'E',
             replace: true,
             scope: {
-              onCategorySelect: '&'
+                onCategorySelect: '&',
+                showDefault: '='
             },
             controller: 'CategoriesDropdownCtrl',
             templateUrl: 'app/common/components/categories-dropdown/templates/categories-dropdown.tpl.html'

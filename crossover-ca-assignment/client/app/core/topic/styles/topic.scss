@@ -1,7 +1,16 @@
-.ta-editor {
+.ta-editor, .ta-bind {
   min-height: 300px;
   height: auto;
   overflow: auto;
   font-family: inherit;
   font-size: 100%;
+}
+
+.topic-new--body {
+  margin-bottom: 2rem;
+}
+.ta-hidden-input{
+  position: fixed;
+  top: -150rem;
+  left: -150rem;
 }

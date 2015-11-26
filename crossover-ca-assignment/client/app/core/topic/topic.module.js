@@ -8,8 +8,8 @@ angular.module('mBoard.topic', [
                 url: '/t',
                 template: '<div class="topic container section"><ui-view/></div>'
             })
-             /*.state('topic.edit', {
-                url: '/t/:title',
+             .state('topic.edit', {
+                url: '/:title/',
                 controller: 'TopicCtrl',
                 templateUrl: 'app/core/topic/templates/topic.tpl.html',
                 resolve: {
@@ -19,7 +19,7 @@ angular.module('mBoard.topic', [
                         });
                     }
                 }
-            })*/
+            })
             .state('topic.new', {
                 url: '/new-topic',
                 controller: 'TopicCtrl',

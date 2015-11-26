@@ -12,6 +12,7 @@
     "angular-bootstrap": "~0.14.0",
     "angular-ui-router": "~0.2.15",
     "angular-toastr": "~1.4.1",
-    "textAngular": "~1.4.6"
+    "textAngular": "~1.4.6",
+    "moment": "momentjs#~2.10.6"
   }
 }

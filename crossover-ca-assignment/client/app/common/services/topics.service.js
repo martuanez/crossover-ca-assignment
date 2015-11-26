@@ -10,7 +10,7 @@ angular.module('mBoard')
         }
 
         function postTopic(title, body, categoryId) {
-            return $http.postt('api/topics', {title: title, body: body, categoryId: categoryId});
+            return $http.post('api/topics', {title: title, body: body, categoryId: categoryId});
         }
 
         function putTopic(id, title, body, categoryId) {

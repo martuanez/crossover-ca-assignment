@@ -29,12 +29,18 @@ angular.module('mBoard')
             return Parse.User.current();
         }
 
+        function getToken(){
+            var user = getUser();
+            return user && user.getSessionToken();
+        }
+
         return {
             login: login,
             logout: logout,
             signup: signup,
             tokenLogin: tokenLogin,
             isAuthenticated: isAuthenticated,
-            getUser: getUser
+            getUser: getUser,
+            getToken: getToken
         };
     });

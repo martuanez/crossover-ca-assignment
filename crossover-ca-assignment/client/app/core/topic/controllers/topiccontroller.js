@@ -1,7 +1,8 @@
 angular.module('mBoard.topic')
-    .controller('TopicCtrl', function ($scope, AuthenticationSvc, TopicsSvc) {
-        $scope.topic = { title:'', body:'', category: null };
+    .controller('TopicCtrl', function ($scope, toastr, AuthenticationSvc, TopicsSvc) {
+        $scope.topic = {title: '', body: '', category: null};
         $scope.posts = null;
+        $scope.isLoading = false;
 
         //Scope methods
         $scope.setCurrentCategory = setCurrentCategory;
@@ -12,10 +13,22 @@ angular.module('mBoard.topic')
         }
 
         function onCreateTopicClick() {
-            TopicsSvc.postTopic($scope.topic.title, $scope.topic.body, $scope.topic.category.id)
-                .success(function(response){
-                    debugger;
-                });
+            if ($scope.topic.title && $scope.topic.body && $scope.topic.category) {
+                $scope.isLoading = true;
+                TopicsSvc.postTopic($scope.topic.title, $scope.topic.body, $scope.topic.category.objectId)
+                    .success(function (response) {
+                        $scope.isLoading = false;
+                    });
+            } else {
+                if (!$scope.topic.title) {
+                    toastr.error('Title is required');
+                } else if (!$scope.topic.body) {
+                    toastr.error('Body is required');
+                }
+                else if (!$scope.topic.category) {
+                    toastr.error('Category is required');
+                }
+            }
         }
 
         function setCurrentCategory(category) {

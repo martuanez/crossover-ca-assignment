@@ -38,33 +38,32 @@ function postTopic(title, body, user, category) {
 
     topic.set('title', title);
     topic.set('body', body);
-    topic.set('user', user);
+    topic.set('creator', user);
     topic.set('category', category);
     topic.set('postsCount', 1);
 
     return topic.save();
 }
 
-function putTopic(id, title, body, user, category, postsCount) {
-    var Topic = Parse.Object.extend("Topics");
-    var topic = new Topic();
+function putTopic(id, title, body, category, postsCount, lastCommentUser, views, replies) {
+    return getTopic(id).then(function(topic){
+        topic.set('title', title);
+        topic.set('body', body);
+        topic.set('category', category);
+        topic.set('postsCount', postsCount);
+        topic.set('lastCommentUser', lastCommentUser);
+        topic.set('views', views);
+        topic.set('replies', replies);
 
-    topic.set('objectId', id);
-    topic.set('title', title);
-    topic.set('body', body);
-    topic.set('user', user);
-    topic.set('category', category);
-    topic.set('postsCount', postsCount);
-
-    return topic.save();
+        return topic.save();
+    });
 }
 
 function deleteTopic(id) {
-    var Topic = Parse.Object.extend('Topics');
-    var topic = new Topic();
-    topic.set('objectId', id);
+    getTopic(id)
+        .then(function(topic){
 
-    return topic.destroy();
+        });
 }
 
 module.exports = {

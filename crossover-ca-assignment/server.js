@@ -17,7 +17,7 @@ var usersRoute = require('./server/routes/users.route');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080;        // set our port
+var port = process.env.PORT || 5000;        // set our port
 
 app.get(/^(.*)$/, function (req, res, next) {
     if (req.path.indexOf('.') !== -1 || req.path.indexOf('api') !== -1) {

@@ -78,10 +78,10 @@ angular.module('mBoard', [
 
         function request(config) {
             var token;
-           /* $injector.invoke(function (AuthService) {
-                token = AuthService.getToken();
+            $injector.invoke(function (AuthenticationSvc) {
+                token = AuthenticationSvc.getToken();
             });
-*/
+
             if (token) {
                 config.headers = config.headers || {};
                 config.headers.Authorization = 'Bearer ' + token;

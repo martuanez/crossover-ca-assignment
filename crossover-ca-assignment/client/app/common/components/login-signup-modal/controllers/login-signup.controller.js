@@ -69,9 +69,8 @@ angular.module('mBoard')
                 $scope.isLoading = true;
                 AuthenticationSvc.login($scope.loginUser.email.toLowerCase(), $scope.loginUser.password)
                     .then(function (response) {
-                        $scope.onLogin();
                         $scope.isLoading = false;
-                        $scope.showLogin = false;
+                        $uibModalInstance.close();
                     }, function (response) {
                         $scope.isLoading = false;
                         toastr.error('Unable to login, please make sure the credentials are correct.');
