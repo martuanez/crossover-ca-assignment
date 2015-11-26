@@ -22,7 +22,11 @@ angular.module('mBoard')
         }
 
         function isAuthenticated(){
-            return !!Parse.User.current();
+            return !!getUser();
+        }
+
+        function getUser(){
+            return Parse.User.current();
         }
 
         return {
@@ -30,6 +34,7 @@ angular.module('mBoard')
             logout: logout,
             signup: signup,
             tokenLogin: tokenLogin,
-            isAuthenticated: isAuthenticated
+            isAuthenticated: isAuthenticated,
+            getUser: getUser
         };
     });

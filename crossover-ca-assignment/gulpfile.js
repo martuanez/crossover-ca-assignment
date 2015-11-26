@@ -27,7 +27,10 @@ var jsLibs = [
     'client/bower_components/angular/angular.min.js',
     'client/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
     'client/bower_components/angular-ui-router/release/angular-ui-router.min.js',
-    'client/bower_components/angular-toastr/dist/angular-toastr.tpls.min.js'
+    'client/bower_components/angular-toastr/dist/angular-toastr.tpls.min.js',
+    'client/bower_components/textAngular/dist/textAngular-rangy.min.js',
+    'client/bower_components/textAngular/dist/textAngular.min.js',
+    'client/bower_components/textAngular/dist/textAngular-sanitize.min.js'
 ];
 
 function getTask(task) {

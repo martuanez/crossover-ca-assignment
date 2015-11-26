@@ -5,9 +5,8 @@ module.exports = function (gulp, plugins) {
             compass: true,
             loadPath: [
                 'client/app/common/styles',
-                'client/app/core/landing/styles',
-                'client/app/core/latest/styles',
-                'client/app/core/thread/styles',
+                'client/app/core/topics/styles',
+                'client/app/core/topic/styles',
                 'client/app/core/categories/styles',
                 'client/app/common/components/header/styles',
                 'client/app/common/components/footer/styles',

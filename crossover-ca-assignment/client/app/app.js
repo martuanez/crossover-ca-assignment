@@ -2,7 +2,9 @@ angular.module('mBoard', [
     'ui.router',
     'ui.bootstrap',
     'toastr',
+    'textAngular',
     'mBoard.topics',
+    'mBoard.topic',
     'mBoard.categories'
 ])
     .run(function ($rootScope, $state, $stateParams/*, AuthService*/) {
@@ -22,11 +24,11 @@ angular.module('mBoard', [
 
         $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
             console.error('Error while trying to change to state', toState, error);
-            $state.go('landing');
+            $state.go('topics');
         });
         $rootScope.$on('$stateNotFound', function (event, unfoundState, fromState, fromParams) {
             console.error('State not found: ', unfoundState, ', coming from', fromState);
-            $state.go('landing');
+            $state.go('topics');
         });
 
         $rootScope.$on('$viewContentLoaded', function (event) {

@@ -1,22 +1,27 @@
 angular.module('mBoard.topic', [
     'ui.bootstrap'
 ])
-    .config(function config($stateProvider, PostsSvc) {
+    .config(function config($stateProvider) {
         $stateProvider
-            .state('topic.edit', {
+            .state('topic', {
+                abstract: true,
+                url: '/t',
+                template: '<div class="topic container section"><ui-view/></div>'
+            })
+             /*.state('topic.edit', {
                 url: '/t/:title',
                 controller: 'TopicCtrl',
                 templateUrl: 'app/core/topic/templates/topic.tpl.html',
                 resolve: {
-                    topic: function ($stateParams) {
+                    topic: function ($stateParams, PostsSvc) {
                         return PostsSvc.getPost($stateParams.id).then(function (response) {
                             return response.data.data;
                         });
                     }
                 }
-            })
+            })*/
             .state('topic.new', {
-                url: '/t/new-topic',
+                url: '/new-topic',
                 controller: 'TopicCtrl',
                 templateUrl: 'app/core/topic/templates/topic.tpl.html',
                 resolve: {
