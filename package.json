@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "postinstall": "bower install"
+    "postinstall": "bower install && gulp build"
   },
   "devDependencies": {
     "del": "^1.2.0",
