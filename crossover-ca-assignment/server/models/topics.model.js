@@ -33,13 +33,23 @@ function getTopicQuery(id) {
 
 function getTopic(id) {
     var query = getTopicQuery(id);
+    var topic = {};
+
     query.include('creator');
     query.include('category');
 
-    return query.first().then(function (topic) {
-        topic.increment('views');
-        return topic.save();
-    });
+    console.log('id ', id);
+
+    return query.first()
+        .then(function (topicResponse) {
+            console.log('topicResponse ', topicResponse);
+            topic = topicResponse;
+            topic.increment('views');
+            return topic.save();
+        })
+        .then(function (saveResponse) {
+            return topic;
+        });
 }
 
 function postTopic(title, body, user, category) {
@@ -56,8 +66,9 @@ function postTopic(title, body, user, category) {
     return topic.save();
 }
 
-function putTopic(id, body, category) {
+function putTopic(id, title, body, category) {
     return getTopic(id).then(function (topic) {
+        topic.set('title', title);
         topic.set('body', body);
         topic.set('category', category);
 
@@ -77,7 +88,7 @@ function updateOnNewPost(user, id) {
         .then(function (topic) {
             topic.set('lastCommentUser', user);
             topic.increment('replies');
-            topic.increment('postsCount');
+            topic.increment('views');
 
             return topic.save();
         });

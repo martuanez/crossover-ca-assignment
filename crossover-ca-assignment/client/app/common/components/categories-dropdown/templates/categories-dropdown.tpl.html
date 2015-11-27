@@ -4,11 +4,12 @@
             class="btn btn-default"
             uib-dropdown-toggle
             ng-disabled="disabled">
-        <span class="categories-dropdown--text">{{selectedCategory.name || showDefault ? defaultCategory.name : 'Choose category'}}</span>
+        <span class="categories-dropdown--text">{{selectedCategory.name || (showDefault ? defaultCategory.name : 'Choose category')}}</span>
         <span class="caret"></span>
     </button>
     <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
-        <li role="menuitem" ng-repeat="category in categories" ng-click="setCurrentCategory(category)" class="text-center">
+        <li role="menuitem" ng-repeat="category in categories" ng-click="setCurrentCategory(category)"
+            class="text-center">
             <category-item category="category"></category-item>
         </li>
     </ul>

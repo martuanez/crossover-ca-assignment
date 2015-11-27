@@ -12,7 +12,7 @@ angular.module('mBoard.topic')
             if ($scope.topic.title && $scope.topic.body && $scope.topic.category) {
                 $scope.isLoading = true;
                 if ($scope.isEdit) {
-                    TopicsSvc.putTopic($scope.topic.title, $scope.topic.body, $scope.topic.category.objectId)
+                    TopicsSvc.putTopic($scope.topic.objectId, $scope.topic.title, $scope.topic.body, $scope.topic.category.objectId)
                         .success(onSubmitSuccesa);
                 } else {
                     TopicsSvc.postTopic($scope.topic.title, $scope.topic.body, $scope.topic.category.objectId)
