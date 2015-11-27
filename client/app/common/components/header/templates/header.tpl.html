@@ -1,0 +1,46 @@
+<header class="header">
+    <div class="pull-left branding action-item">
+        <a href="/" class="branding-link">
+            <h1 class="logo"> mBoard </h1>
+        </a>
+    </div>
+    <div class="pull-right nav open-sans-light">
+                <span class="action-item">
+                    <a ui-sref="topics">Latest</a>
+                </span>
+                <span class="action-item">
+                    <a ui-sref="categories">Categories</a>
+                </span>
+
+                <span class="action-item hide-sm action-item__btn pull-right pointer" ng-click="onLoginClick()"
+                      ng-hide="isLoggedIn">
+                    <a href>Login</a>
+                </span>
+
+                <span class="action-item hide-sm action-item__btn pull-right pointer" ng-click="onSignupClick()"
+                      ng-hide="isLoggedIn">
+                    <a href>Signup</a>
+                </span>
+
+                <span class="action-item hide-sm pointer" ng-click="onLogoutClick()" ng-show="isLoggedIn">
+                    <a href="#">Logout</a>
+                </span>
+
+                <span class="action-item show-sm">
+                    <a href class="text-primary" ng-click="showChilds = !showChilds; showLogin = false">
+                        More
+                    </a>
+                    <span class="more-links" ng-show="showChilds">
+                        <span class="action-item hide-sm" ng-hide="isLoggedIn">
+                            <a href="#"><span ng-click="onLoginClick()">Login</span></a>
+                        </span>
+                        <span class="action-item hide-sm" ng-hide="isLoggedIn">
+                            <a href="#"><span ng-click="onSignupClick()">Signup</span></a>
+                        </span>
+                        <span class="action-item hide-sm" ng-click="onLogoutClick()" ng-show="isLoggedIn">
+                            <a href="#">Logout</a>
+                        </span>
+                    </span>
+                </span>
+    </div>
+</header>

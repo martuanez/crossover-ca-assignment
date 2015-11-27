@@ -1,0 +1,77 @@
+.ta-editor, .ta-bind {
+  min-height: 300px;
+  height: auto;
+  overflow: auto;
+  font-family: inherit;
+  font-size: 100%;
+}
+
+.topic-new--body {
+  margin-bottom: 2rem;
+}
+
+.ta-hidden-input {
+  position: fixed;
+  top: -150rem;
+  left: -150rem;
+}
+
+.topic-view {
+  .row {
+    margin-bottom: 2rem;
+  }
+}
+
+.reply-text {
+  font-weight: bolder;
+}
+
+.topic-view--avatar {
+  min-width: 8rem;
+  min-height: 2rem;
+  padding-left: 1.5rem;
+}
+
+.topic-view--header {
+  color: $light-gray;
+}
+
+.topic-details {
+  background: #F1F1F1;
+  border: 1px solid #E0E0E0;
+  padding: 2rem 3rem;
+}
+
+.posts-separator {
+  border: 1px solid #E0E0E0;
+}
+
+.topic-item {
+  padding: 0 1.5rem;
+  height: 6.3rem;
+  .value {
+    font-size: 2rem;
+  }
+  .value, .date-value {
+    display: inline-block;
+    height: 4.2rem;
+    padding-top: 1rem;
+    width: 100%;
+  }
+  .title {
+    color: #B3B3B3;
+    font-weight: bolder;
+    display: inline-block;
+    width: 100%;
+    font-size: 1.2rem;
+  }
+}
+
+.topic-data {
+  float: none;
+  margin: auto;
+}
+
+.topic-reply {
+  margin-left: 8rem;
+}

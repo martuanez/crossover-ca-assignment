@@ -1,0 +1,116 @@
+<div class="topic-view">
+    <div class="topic-view--topic">
+        <div class="row ">
+            <div class="col-xs-12">
+                <h1>{{topic.title}}</h1>
+                <category-item category="topic.category"></category-item>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pull-left topic-view--avatar">
+                <user-avatar user="topic.creator" size="lg"></user-avatar>
+            </div>
+            <div class="col-xs-10">
+                <span class="pull-left text-primary">{{topic.creator.username}}</span>
+                <span class="pull-right topic-view--header">{{getFormattedDate(topic.updatedAt)}} #1</span>
+                <br/>
+                <br/>
+
+                <div class="clearfix" ng-bind-html="topic.body"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10 topic-reply">
+                    <div class="pull-right">
+                        <a class="btn btn-primary" ng-click="onReplyClick()" scroll-to="reply-form">
+                            <span class="glyphicon glyphicon-share-alt"></span> Reply
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10 topic-data">
+                    <div class="pull-right topic-details">
+                        <div class="pull-left topic-item topic-creator">
+                            <span class="title">Creator</span>
+                            <br/>
+                            <user-avatar user="topic.creator" size="md"></user-avatar>
+                            <br/>
+                            <span class="pull-left text-primary">{{topic.creator.username}}</span>
+                        </div>
+                        <div class="pull-left topic-item topic-views text-center">
+                            <span class="pull-left text-primary value">{{topic.views}}</span>
+                            <br/>
+                            <span class="title">VIEWS</span>
+                        </div>
+                        <div class="pull-left topic-item topic-replies text-center">
+                            <span class="pull-left text-primary value">{{topic.replies}}</span>
+                            <br/>
+                            <span class="title">REPLIES</span>
+                        </div>
+                        <div class="pull-left topic-item topic-date text-center">
+                            <span class="pull-left text-primary date-value">{{getPrettyDate(topic.createdAt)}}</span>
+                            <br/>
+                            <span class="title">CREATED AT</span>
+                        </div>
+                        <div class="pull-left topic-item topic-date text-center">
+                            <span class="pull-left text-primary date-value">{{getPrettyDate(topic.updatedAt)}}</span>
+                            <br/>
+                            <span class="title">LAST UPDATE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="topic-view--post" ng-repeat="post in posts">
+            <hr class="posts-separator"/>
+            <div class="row">
+                <div class="pull-left topic-view--avatar">
+                    <user-avatar user="post.user" size="lg"></user-avatar>
+                </div>
+                <div class="col-xs-10">
+                    <span class="pull-left text-primary">{{post.user.username}}</span>
+                    <span class="pull-right topic-view--header">{{getFormattedDate(post.updatedAt)}} #{{$index + 1}}</span>
+                    <br/>
+                    <br/>
+
+                    <div class="clearfix" ng-bind-html="post.body"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="pull-left topic-view--avatar">
+                </div>
+                <div class="col-xs-10">
+                    <div class="pull-right">
+                        <a class="btn btn-primary" ng-click="onReplyClick()" scroll-to="reply-form">
+                            <span class="glyphicon glyphicon-share-alt"></span> Reply
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="topic-view--post" id="reply-form">
+            <div class="row">
+                <div class="pull-left topic-view--avatar">
+                    <user-avatar user="post.user" size="lg"></user-avatar>
+                </div>
+                <div class="col-xs-10">
+                    <p class="text-primary reply-text">Reply</p>
+
+                    <div text-angular="text-angular" name="htmlcontent" ng-model="replyBody"
+                         ta-disabled='disabled'></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="pull-left topic-view--avatar">
+                </div>
+                <div class="col-xs-10">
+                    <div class="pull-right">
+                        <button class="btn btn-primary" ng-click="onPostReplyClick()" ng-disabled="!replyBody">
+                            Post reply
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

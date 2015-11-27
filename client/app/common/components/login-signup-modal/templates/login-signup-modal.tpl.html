@@ -1,0 +1,104 @@
+<div class="login-signup-modal">
+    <h1 class="logo"><i ng-click="onSignupTabClick()">Signup</i> / <i ng-click="onLoginTabClick()">Login</i></h1>
+
+    <div class="signup-modal" ng-hide="showLogin">
+        <form name="signupForm">
+            <div class="form-group signup-modal--email">
+                <input type="email"
+                       required
+                       name="email"
+                       class="form-control"
+                       placeholder="Email address"
+                       ng-model="signupUser.email"
+                       ng-disabled="vm.isLoading"
+                       tooltip="{{emailMsg}}"
+                       ng-blur="verifyEmail()"
+                       tooltip-placement="top"
+                       tooltip-trigger="focus"
+                       tooltip-enable="(signupForm.email.$error.required || signupForm.email.$error.email )&& signupForm.email.$touched">
+            </div>
+            <div class="form-group signup-modal--password">
+                <input type="password"
+                       required
+                       name="password"
+                       class="form-control"
+                       placeholder="Password"
+                       ng-model="signupUser.password"
+                       ng-pattern="/(?=.*\d)(?=.*[A-Z]).{6,}/"
+                       ng-minlength="6"
+                       ng-disabled="vm.isLoading"
+                       tooltip="{{signupForm.password.$error.required ? requiredMsg : passwordMsg}}"
+                       tooltip-placement="top"
+                       tooltip-trigger="focus"
+                       tooltip-enable="signupForm.password.$error.required && signupForm.password.$touched">
+            </div>
+            <div class="form-group signup-modal--password">
+                <input type="password"
+                       required
+                       name="passwordConfirm"
+                       class="form-control"
+                       compare-to="signupUser.password"
+                       placeholder="Confirm Password"
+                       ng-model="signupUser.passwordConfirm"
+                       ng-pattern="/(?=.*\d)(?=.*[A-Z]).{6,}/"
+                       ng-minlength="6"
+                       ng-disabled="vm.isLoading"
+                       tooltip="{{signupForm.passwordConfirm.$error.required ? requiredMsg : signupForm.passwordConfirm.$error.pattern ? passwordMsg : passwordMatch}}"
+                       tooltip-placement="top"
+                       tooltip-trigger="focus"
+                       tooltip-enable="signupForm.passwordConfirm.$error.compareTo && signupForm.passwordConfirm.$touched">
+            </div>
+
+            <div class="loader text-center" ng-show="isLoading">
+                <img src="app/common/images/loader-dark.gif"/>
+            </div>
+            <button type="submit"
+                    class="btn btn-primary"
+                    ng-click="onSignupBtnClick()"
+                    ng-disabled="isLoading">
+                Signup
+            </button>
+        </form>
+    </div>
+    <div class="login-form" ng-show="showLogin">
+        <form name="loginForm" novalidate="" class="login text-center">
+            <div class="form-group">
+                <input type="text"
+                       required=""
+                       class="form-control"
+                       placeholder="Email"
+                       ng-model="loginUser.email"
+                       name="username"
+                       tooltip="{{requiredMsg}}"
+                       tooltip-placement="left"
+                       tooltip-trigger="mouseenter"
+                       ng-disabled="isLoading"
+                       tooltip-enable="loginForm.username.$error.required && loginForm.username.$touched">
+            </div>
+            <div class="form-group">
+                <input type="password"
+                       required=""
+                       class="form-control"
+                       placeholder="Password"
+                       ng-model="loginUser.password"
+                       name="password"
+                       tooltip="{{requiredMsg}}"
+                       tooltip-placement="left"
+                       tooltip-trigger="mouseenter"
+                       ng-disabled="isLoading"
+                       tooltip-enable="loginForm.password.$error.required && loginForm.password.$touched">
+            </div>
+        <span class="primary-text pull-right forgot-password"
+              ng-click="onForgotPasswordClick()"
+              tooltip="Send an email for requesting a new password"
+              tooltip-placement="left"
+              tooltip-trigger="mouseenter">Forgot password?</span>
+            <button type="submit"
+                    class="btn btn-primary"
+                    ng-click="onLoginClick()"
+                    ng-disabled="isLoading">login
+            </button>
+            <img src="app/common/images/loader-darker.gif" class="loader" ng-show="isLoading"/>
+        </form>
+    </div>
+</div>

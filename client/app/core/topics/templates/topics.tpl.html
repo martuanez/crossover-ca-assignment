@@ -1,0 +1,49 @@
+<section class="latest section container">
+    <div class="row topics-header">
+        <div class="col-xs-6">
+            <categories-dropdown on-category-select="setCurrentCategory(category)"
+                                 show-default="true"
+                                 category="selectedCategory"></categories-dropdown>
+        </div>
+        <div class="col-xs-6 text-right">
+            <a class="btn btn-primary" ui-sref="topic.new">
+                <span class="glyphicon glyphicon-plus"></span> New Topic
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="topics table">
+                <thead>
+                <tr>
+                    <th class="topics--title topics--title--topic">Topic</th>
+                    <th class="topics--title topics--title--users">Users</th>
+                    <th class="topics--title topics--title--category">Category</th>
+                    <th class="topics--title topics--title--views text-center">Views</th>
+                    <th class="topics--title topics--title--replies text-center">Replies</th>
+                    <th class="topics--title topics--title--activity text-center">Activity</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="topic in topics">
+                    <td class="topics--content topics--content--title" colspan="1">
+                        <a ui-sref="topic.view({urlTitle: getUrlTitle(topic.title), id: topic.objectId})">{{topic.title}}</a>
+                    </td>
+                    <td class="topics--content topics--content--users text-center">
+                        <user-avatar user="topic.creator" size="sm"></user-avatar>
+                        <user-avatar user="topic.lastCommentUser" size="sm" ng-if="topic.lastCommentUser"></user-avatar>
+                    </td>
+                    <td class="topics--content topics--content--category text-center">
+                        <category-item category="topic.category"></category-item>
+                    </td>
+                    <td class="topics--content topics--content--views text-center">{{topic.views || 0}}</td>
+                    <td class="topics--content topics--content--replies text-center">{{topic.postsCount}}</td>
+                    <td class="topics--content topics--content--activity text-center">
+                        {{getFormattedDate(topic.updatedAt)}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
