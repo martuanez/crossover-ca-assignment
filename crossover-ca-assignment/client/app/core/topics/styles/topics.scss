@@ -1,12 +1,22 @@
+.topics-header{
+  margin-bottom: 2rem;
+}
 .topics {
   width: 100%;
-  .topics--content--activity, .topics--content--category {
+  .topics--title {
+    color: $light-gray;
+    font-weight: 100;
+  }
+  .topics--title--activity {
+    width: 10rem;
+  }
+  .topics--title--category {
     width: 6rem;
   }
-  .topics--content--replies, .topics--content--views {
+  .topics--title--replies, .topics--title--views, .topics--title--users {
     width: 6.5rem;
   }
-  .topics--content--replies {
+  .topics--content--replies, .topics--content--title{
     font-weight: bolder;
   }
 }

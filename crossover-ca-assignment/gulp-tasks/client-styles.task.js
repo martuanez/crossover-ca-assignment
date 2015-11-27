@@ -10,7 +10,9 @@ module.exports = function (gulp, plugins) {
                 'client/app/core/categories/styles',
                 'client/app/common/components/header/styles',
                 'client/app/common/components/footer/styles',
-                'client/app/common/components/login-signup-modal/styles'
+                'client/app/common/components/login-signup-modal/styles',
+                'client/app/common/components/user-avatar/styles',
+                'client/app/common/components/category-item/styles'
             ]
         })
             .on('error', function (err) {

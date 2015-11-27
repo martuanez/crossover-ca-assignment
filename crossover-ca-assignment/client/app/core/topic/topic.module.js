@@ -9,7 +9,7 @@ angular.module('mBoard.topic', [
                 template: '<div class="topic container section"><ui-view/></div>'
             })
              .state('topic.edit', {
-                url: '/:title/',
+                url: '/e/{title}',
                 controller: 'TopicCtrl',
                 templateUrl: 'app/core/topic/templates/topic.tpl.html',
                 resolve: {

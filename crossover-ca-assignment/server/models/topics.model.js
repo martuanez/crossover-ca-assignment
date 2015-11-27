@@ -5,6 +5,10 @@ function getTopics(categoryId, skip) {
     var Topic = Parse.Object.extend('Topics');
     var query = new Parse.Query(Topic);
 
+    query.include('category');
+    query.include('creator');
+    query.include('lastCommentUser');
+
     if (categoryId) {
         var categoriesQuery = categoriesModel.getCategoryQuery(categoryId);
         query.matchesQuery('category', categoriesQuery);
