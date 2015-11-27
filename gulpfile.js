@@ -70,7 +70,7 @@ gulp.task('connectDist', function () {
 
 // main build task
 gulp.task('build',
-    [/*'lint',*/ 'clean', 'vendor-styles', 'client-styles', 'vendor-js', 'client-js', 'html2js', 'copy-fonts']
+    ['clean', 'client-styles', 'injectjs']
 );
 
 gulp.task('start', ['build'], function () {

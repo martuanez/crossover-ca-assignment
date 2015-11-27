@@ -12,7 +12,7 @@ module.exports = function (gulp, plugins) {
                 'client/app/common/components/login-signup-modal/styles',
                 'client/app/common/components/user-avatar/styles',
                 'client/app/common/components/category-item/styles',
-                'client/app/common/components/category-dropdown/styles'
+                'client/app/common/components/categories-dropdown/styles'
             ]
         })
             .on('error', function (err) {
