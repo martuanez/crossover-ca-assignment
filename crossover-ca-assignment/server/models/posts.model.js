@@ -1,12 +1,12 @@
 var Parse = require('../lib/parse/parse');
-var threadsModel = require('threads.model');
+var topicsModel = require('./topics.model');
 
-function getPosts(threadId, skip) {
+function getPosts(topicId, skip) {
     var Post = Parse.Object.extend('Posts');
     var query = new Parse.Query(Post);
 
-    var threadQuery = threadsModel.getThreadQuery(threadId);
-    query.matchesQuery('thread', threadQuery);
+    var topicQuery = topicsModel.getTopicQuery(topicId);
+    query.matchesQuery('topic', topicQuery);
     if(skip){
         query.skip(skip);
     }
@@ -16,14 +16,14 @@ function getPosts(threadId, skip) {
     return query.find();
 }
 
-function postPost(title, body, user, thread) {
+function postPost(title, body, user, topic) {
     var Post = Parse.Object.extend("Posts");
     var post = new Post();
 
     post.set('title', title);
     post.set('body', body);
     post.set('user', user);
-    post.set('thread', thread);
+    post.set('topic', topic);
 
     return post.save();
 }

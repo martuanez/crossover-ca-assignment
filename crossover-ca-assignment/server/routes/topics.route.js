@@ -17,16 +17,13 @@ router.route('/topics')
     })
     .post(function (req, res) {
         var newTopic = req.body;
-        var userPointer = {
-            "__type": "Pointer",
-            "className": "_User"
-        };
+        var userPointer = null;
         authenticationSvc.getRequestUser(req)
             .then(function (responseUser) {
                 if (!responseUser) {
                     onError(res, 'Invalid session');
                 }
-                userPointer.objectId = responseUser.objectId;
+                userPointer = getUserPointer(responseUser.objectId);
                 return categoriesModel.getCategory(newTopic.categoryId);
             })
             .then(function (category) {
@@ -67,11 +64,14 @@ router.route('/topics/:topicId')
                 return topicsModel.getTopic(topicId);
             })
             .then(function (topicResponse) {
-                //todo: Check is the same author here...
+                debugger;
+                if(user.objectId !== topicResponse.creator.objectId){
+                    onError(res, 'This user is not authorized to update this topic');
+                }
                 return topicsModel.putTopic(topicId,
                     newTopic.title,
                     newTopic.body,
-                    newTopic.category,
+                    newTopic.categoryId,
                     newTopic.postsCount,
                     newTopic.lastCommentUser,
                     newTopic.views,
@@ -110,6 +110,14 @@ router.route('/topics/:topicId')
 function onError(res, error) {
     res.status(500);
     res.json({error: error});
+}
+
+function getUserPointer(objectId){
+    return {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": objectId
+    };
 }
 
 module.exports = router;

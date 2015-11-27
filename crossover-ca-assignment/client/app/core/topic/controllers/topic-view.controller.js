@@ -1,6 +1,6 @@
 angular.module('mBoard.topic')
-    .controller('TopicCtrl', function ($scope, toastr, AuthenticationSvc, TopicsSvc) {
-        $scope.topic = {title: '', body: '', category: null};
+    .controller('TopicViewCtrl', function ($scope, toastr, AuthenticationSvc, TopicsSvc, PostsSvc, topic) {
+        $scope.topic = null;
         $scope.posts = null;
         $scope.isLoading = false;
 
@@ -8,17 +8,20 @@ angular.module('mBoard.topic')
         $scope.setCurrentCategory = setCurrentCategory;
         $scope.onCreateTopicClick = onCreateTopicClick;
 
-        function setTopics(topics) {
-            $scope.topics = topics.data;
-        }
-
         function onCreateTopicClick() {
             if ($scope.topic.title && $scope.topic.body && $scope.topic.category) {
                 $scope.isLoading = true;
-                TopicsSvc.postTopic($scope.topic.title, $scope.topic.body, $scope.topic.category.objectId)
-                    .success(function (response) {
-                        $scope.isLoading = false;
-                    });
+                if ($scope.isEdit) {
+                    TopicsSvc.putTopic($scope.topic.title, $scope.topic.body, $scope.topic.category.objectId)
+                        .success(function (response) {
+                            $scope.isLoading = false;
+                        });
+                } else {
+                    TopicsSvc.postTopic($scope.topic.title, $scope.topic.body, $scope.topic.category.objectId)
+                        .success(function (response) {
+                            $scope.isLoading = false;
+                        });
+                }
             } else {
                 if (!$scope.topic.title) {
                     toastr.error('Title is required');
@@ -35,8 +38,13 @@ angular.module('mBoard.topic')
             $scope.topic.category = category;
         }
 
+        function onGetPostsSuccess(postsResponse) {
+            $scope.posts = postsResponse.data;
+        }
+
         function init() {
-            TopicsSvc.getTopics().success(setTopics);
+            $scope.topic = topic;
+            PostsSvc.getPosts(topic.objectId).success(onGetPostsSuccess);
         }
 
         init();

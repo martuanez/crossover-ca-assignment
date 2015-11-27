@@ -1,14 +1,10 @@
 angular.module('mBoard.topics')
-    .controller('TopicsCtrl', function ($scope, CategoriesSvc, TopicsSvc, AlphabetColorSvc) {
+    .controller('TopicsCtrl', function ($scope, CategoriesSvc, TopicsSvc, UtilsSvc) {
         $scope.topics = null;
         //Scope methods
         $scope.setCurrentCategory = setCurrentCategory;
         $scope.getFormattedDate = getFormattedDate;
-        $scope.getColorClass = getColorClass;
-
-        function getColorClass(word) {
-            return AlphabetColorSvc.getColorClass(word[0]);
-        }
+        $scope.getUrlTitle = UtilsSvc.getUrlTitle;
 
         function getFormattedDate(date) {
             return moment(date).fromNow(true);

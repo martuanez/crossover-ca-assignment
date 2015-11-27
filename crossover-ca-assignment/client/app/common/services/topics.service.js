@@ -9,8 +9,16 @@ angular.module('mBoard')
             return $http.get('api/topics/' + id);
         }
 
-        function postTopic(title, body, categoryId) {
-            return $http.post('api/topics', {title: title, body: body, categoryId: categoryId});
+        function postTopic(title, body, categoryId, postsCount,lastCommentUser, views, replies) {
+            return $http.post('api/topics', {
+                title: title,
+                body: body,
+                categoryId: categoryId,
+                postsCount: postsCount,
+                lastCommentUser: lastCommentUser,
+                views: views,
+                replies: replies
+            });
         }
 
         function putTopic(id, title, body, categoryId) {

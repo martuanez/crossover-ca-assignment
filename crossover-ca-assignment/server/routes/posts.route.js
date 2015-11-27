@@ -1,12 +1,12 @@
 var router = require('express').Router();
-var postsModel = require('../models/categories.model');
+var postsModel = require('../models/posts.model');
 
 router.route('/posts')
     .get(function (req, res) {
         var skip = req.query.skip;
-        var threadId = req.query.thread;
+        var topicId = req.query.topic;
 
-        postsModel.getPosts(threadId, skip)
+        postsModel.getPosts(topicId, skip)
             .then(function (response) {
                 res.json({data: response});
             }, function (error) {
@@ -16,7 +16,7 @@ router.route('/posts')
     .post(function (req, res) {
         var post = req.body;
 
-        postsModel.postPost(post.title, post.body, post.user, post.thread)
+        postsModel.postPost(post.title, post.body, post.user, post.topic)
             .then(function (response) {
                 res.json({data: response});
             }, function (error) {

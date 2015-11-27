@@ -8,6 +8,7 @@ function getTopics(categoryId, skip) {
     query.include('category');
     query.include('creator');
     query.include('lastCommentUser');
+    query.limit(1000);
 
     if (categoryId) {
         var categoriesQuery = categoriesModel.getCategoryQuery(categoryId);
@@ -32,7 +33,7 @@ function getTopicQuery(id) {
 
 function getTopic(id) {
     var query = getTopicQuery(id);
-        query.include('user');
+        query.include('creator');
     return query.first();
 }
 

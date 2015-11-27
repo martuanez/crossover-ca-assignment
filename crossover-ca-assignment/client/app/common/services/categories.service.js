@@ -9,8 +9,8 @@ angular.module('mBoard')
             return $http.get('api/categories/' + id);
         }
 
-        function postCategory(name, latestThreads) {
-            return $http.postt('api/categories', {name: name, latestThreads: latestThreads});
+        function postCategory(name, latestTopics) {
+            return $http.postt('api/categories', {name: name, latestTopics: latestTopics});
         }
 
         function putCategory(id, name) {
