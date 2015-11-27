@@ -2,7 +2,8 @@
     <div class="row topics-header">
         <div class="col-xs-6">
             <categories-dropdown on-category-select="setCurrentCategory(category)"
-                                 show-default="true"></categories-dropdown>
+                                 show-default="true"
+                                 category="selectedCategory"></categories-dropdown>
         </div>
         <div class="col-xs-6 text-right">
             <a class="btn btn-primary" ui-sref="topic.new">
@@ -29,8 +30,8 @@
                         <a ui-sref="topic.view({urlTitle: getUrlTitle(topic.title), id: topic.objectId})">{{topic.title}}</a>
                     </td>
                     <td class="topics--content topics--content--users text-center">
-                        <user-avatar user="topic.creator"></user-avatar>
-                        <user-avatar user="topic.lastCommentUser" ng-if="topic.lastCommentUser"></user-avatar>
+                        <user-avatar user="topic.creator" size="sm"></user-avatar>
+                        <user-avatar user="topic.lastCommentUser" size="sm" ng-if="topic.lastCommentUser"></user-avatar>
                     </td>
                     <td class="topics--content topics--content--category text-center">
                         <category-item category="topic.category"></category-item>

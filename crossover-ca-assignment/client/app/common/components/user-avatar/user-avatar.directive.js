@@ -4,7 +4,8 @@ angular.module('mBoard')
             restrict: 'E',
             replace: true,
             scope: {
-                user: '='
+                user: '=',
+                size: '@'
             },
             controller: 'UserAvatarCtrl',
             templateUrl: 'app/common/components/user-avatar/templates/user-avatar.tpl.html'

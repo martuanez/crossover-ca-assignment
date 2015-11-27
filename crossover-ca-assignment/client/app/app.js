@@ -10,6 +10,7 @@ angular.module('mBoard', [
     .run(function ($rootScope, $state, $stateParams/*, AuthService*/) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+        window.socket = io();
 
         //State events
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {

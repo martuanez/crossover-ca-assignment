@@ -29,7 +29,7 @@ app.get(/^(.*)$/, function (req, res, next) {
 
 
 var server = app.listen(port);
-var io = require('socket.io').listen(server);
+global.io = require('socket.io').listen(server);
 
 io.on('connection', function (socket) {
     socket.on('chat message', function (msg) {

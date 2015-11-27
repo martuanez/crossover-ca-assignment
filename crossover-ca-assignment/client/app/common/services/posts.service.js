@@ -9,8 +9,8 @@ angular.module('mBoard')
             return $http.get('api/posts/' + id);
         }
 
-        function postPost(title, body, topicId) {
-            return $http.postt('api/posts', {title: title, body: body, topicId: topicId});
+        function postPost(body, topicId) {
+            return $http.post('api/posts', {body: body, topicId: topicId});
         }
 
         function putPost(id, title, body) {

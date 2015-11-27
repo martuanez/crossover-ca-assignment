@@ -5,7 +5,12 @@ angular.module('mBoard')
             return title.split(' ').join('-');
         }
 
+        function getFormattedDate(date) {
+            return moment(date).fromNow(true);
+        }
+
         return {
-            getUrlTitle: getUrlTitle
+            getUrlTitle: getUrlTitle,
+            getFormattedDate: getFormattedDate
         };
     });

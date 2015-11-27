@@ -1,6 +1,7 @@
-.topics-header{
+.topics-header {
   margin-bottom: 2rem;
 }
+
 .topics {
   width: 100%;
   .topics--title {
@@ -16,7 +17,34 @@
   .topics--title--replies, .topics--title--views, .topics--title--users {
     width: 6.5rem;
   }
-  .topics--content--replies, .topics--content--title{
+  .topics--title--users {
+    width: 8.5rem;
+  }
+  .topics--content--replies, .topics--content--title {
     font-weight: bolder;
+  }
+}
+
+
+@media only screen and (max-width: 992px) {
+  .topics--title--activity, .topics--content--activity{
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .topics--title--replies,
+  .topics--title--views,
+  .topics--content--replies,
+  .topics--content--views{
+    display: none;
+  }
+  .container {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .topics--title--activity, .topics--content--activity{
+    display: none;
   }
 }

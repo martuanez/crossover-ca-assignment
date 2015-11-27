@@ -16,11 +16,13 @@ angular.module('mBoard')
 
         function setCurrentCategory(category) {
             $scope.selectedCategory = category;
+            $scope.category = $scope.selectedCategory;
             $scope.onCategorySelect({category: category});
         }
 
         function init() {
             CategoriesSvc.getCategories().success(setCategories);
+            $scope.selectedCategory = $scope.category;
         }
 
         init();

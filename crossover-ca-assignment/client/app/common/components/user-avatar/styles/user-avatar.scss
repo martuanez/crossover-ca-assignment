@@ -6,4 +6,11 @@
   padding-top: 0.13rem;
   text-transform: uppercase;
   color: $white;
+  &.user-avatar--lg {
+    width: 4.5rem;
+    height: 4.5rem;
+    padding-top: 0.1rem;
+    font-size: 3rem;
+    font-weight: bold;
+  }
 }

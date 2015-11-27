@@ -13,15 +13,10 @@ angular.module('mBoard.topic')
                 $scope.isLoading = true;
                 if ($scope.isEdit) {
                     TopicsSvc.putTopic($scope.topic.title, $scope.topic.body, $scope.topic.category.objectId)
-                        .success(function (response) {
-                            $scope.isLoading = false;
-                        });
+                        .success(onSubmitSuccesa);
                 } else {
                     TopicsSvc.postTopic($scope.topic.title, $scope.topic.body, $scope.topic.category.objectId)
-                        .success(function (response) {
-                            $scope.isLoading = false;
-                            $state.go('topic.view', {urlTitle: UtilsSvc.getUrlTitle(topic.title), id: topic.objectId});
-                        });
+                        .success(onSubmitSuccesa);
                 }
             } else {
                 if (!$scope.topic.title) {
@@ -33,6 +28,12 @@ angular.module('mBoard.topic')
                     toastr.error('Category is required');
                 }
             }
+        }
+
+        function onSubmitSuccesa(response) {
+            var topic = response.data;
+            $scope.isLoading = false;
+            $state.go('topic.view', {urlTitle: UtilsSvc.getUrlTitle(topic.title), id: topic.objectId});
         }
 
         function setCurrentCategory(category) {

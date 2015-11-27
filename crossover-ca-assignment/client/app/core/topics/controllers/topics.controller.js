@@ -3,12 +3,20 @@ angular.module('mBoard.topics')
         $scope.topics = null;
         //Scope methods
         $scope.setCurrentCategory = setCurrentCategory;
-        $scope.getFormattedDate = getFormattedDate;
+        $scope.getFormattedDate = UtilsSvc.getFormattedDate;
         $scope.getUrlTitle = UtilsSvc.getUrlTitle;
 
-        function getFormattedDate(date) {
-            return moment(date).fromNow(true);
-        }
+
+        socket.on('new topic', function (msg) {
+            var filteredTopics = $scope.topics.filter(function (topic) {
+                return topic.objectId === msg.objectId;
+            });
+
+            if (filteredTopics.length === 0) {
+                $scope.topics.push(msg);
+                $scope.$apply();
+            }
+        });
 
         function setTopics(topics) {
             $scope.topics = topics.data;

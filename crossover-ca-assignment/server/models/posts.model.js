@@ -7,6 +7,8 @@ function getPosts(topicId, skip) {
 
     var topicQuery = topicsModel.getTopicQuery(topicId);
     query.matchesQuery('topic', topicQuery);
+
+    query.include('user');
     if(skip){
         query.skip(skip);
     }
@@ -16,11 +18,10 @@ function getPosts(topicId, skip) {
     return query.find();
 }
 
-function postPost(title, body, user, topic) {
+function postPost(body, user, topic) {
     var Post = Parse.Object.extend("Posts");
     var post = new Post();
 
-    post.set('title', title);
     post.set('body', body);
     post.set('user', user);
     post.set('topic', topic);

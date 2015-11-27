@@ -23,7 +23,7 @@ router.route('/categories')
 
 router.route('/categories/:categoryId')
     .get(function (req, res) {
-        var categoryId = req.param.categoryId;
+        var categoryId = req.params.categoryId;
 
         categoriesModel.getCategory(categoryId)
             .then(function (response) {
@@ -33,7 +33,7 @@ router.route('/categories/:categoryId')
             });
     })
     .put(function (req, res) {
-        var categoryId = req.param.categoryId;
+        var categoryId = req.params.categoryId;
         var categoryName = req.body.name;
 
         categoriesModel.putCategory(categoryId, categoryName)
@@ -44,7 +44,7 @@ router.route('/categories/:categoryId')
             });
     })
     .delete(function (req, res) {
-        var categoryId = req.param.categoryId;
+        var categoryId = req.params.categoryId;
 
         categoriesModel.deleteCategory(categoryId)
             .then(function (response) {

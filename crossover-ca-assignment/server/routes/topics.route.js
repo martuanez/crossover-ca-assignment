@@ -33,6 +33,7 @@ router.route('/topics')
                 return topicsModel.postTopic(newTopic.title, newTopic.body, userPointer, category)
             })
             .then(function (response) {
+                global.io.emit('new topic', response);
                 res.json({data: response});
             }, function (error) {
                 onError(res, error);
@@ -41,9 +42,7 @@ router.route('/topics')
 
 router.route('/topics/:topicId')
     .get(function (req, res) {
-        var topicId = req.param.topicId;
-        var token = getToken(req);
-
+        var topicId = req.params.topicId;
         topicsModel.getTopic(topicId)
             .then(function (response) {
                 res.json({data: response});
@@ -53,7 +52,7 @@ router.route('/topics/:topicId')
     })
     .put(function (req, res) {
         var newTopic = req.body;
-        var topicId = req.param.topicId;
+        var topicId = req.params.topicId;
         var user = null;
         authenticationSvc.getRequestUser(req)
             .then(function (responseUser) {
@@ -84,7 +83,7 @@ router.route('/topics/:topicId')
             });
     })
     .delete(function (req, res) {
-        var topicId = req.param.topicId;
+        var topicId = req.params.topicId;
         var user = null;
         authenticationSvc.getRequestUser(req)
             .then(function (responseUser) {
