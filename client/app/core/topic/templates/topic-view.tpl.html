@@ -10,7 +10,7 @@
             <div class="pull-left topic-view--avatar">
                 <user-avatar user="topic.creator" size="lg"></user-avatar>
             </div>
-            <div class="col-xs-10">
+            <div class="col-xs-10 margin-10">
                 <span class="pull-left text-primary">{{topic.creator.username}}</span>
                 <span class="pull-right topic-view--header">{{getFormattedDate(topic.updatedAt)}} #1</span>
                 <br/>
@@ -19,7 +19,9 @@
                 <div class="clearfix" ng-bind-html="topic.body"></div>
             </div>
             <div class="row">
-                <div class="col-xs-10 topic-reply">
+                <div class="pull-left topic-view--avatar">
+                </div>
+                <div class="col-xs-10">
                     <div class="pull-right">
                         <a class="btn btn-primary" ng-click="onReplyClick()" scroll-to="reply-form">
                             <span class="glyphicon glyphicon-share-alt"></span> Reply
