@@ -1,5 +1,5 @@
 angular.module('mBoard.topics')
-    .controller('TopicsCtrl', function ($scope, CategoriesSvc, TopicsSvc, UtilsSvc) {
+    .controller('TopicsCtrl', function ($scope, CategoriesSvc, TopicsSvc, UtilsSvc, AuthenticationSvc) {
         $scope.topics = null;
         //Scope methods
         $scope.setCurrentCategory = setCurrentCategory;
